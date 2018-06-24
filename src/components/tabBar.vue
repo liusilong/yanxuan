@@ -6,6 +6,9 @@
         <div class="bar-item" @click="tabTo('topic')">
             <text class="bar-txt" :class="[this.isActive('topic')]">专题</text>
         </div>
+        <div class="bar-item" @click="tabTo('me')">
+            <text class="bar-txt" :class="[this.isActive('me')]">我</text>
+        </div>
     </div>
 </template>
 
