@@ -56,7 +56,7 @@ export default {
         background-color: #fafafa;
     }
     .bar-active {
-        color: red
+        color: #b4282d
     }
     .bar-item {
         flex: 1;

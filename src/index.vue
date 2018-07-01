@@ -1,13 +1,16 @@
 <template>
   <div class="wrapper">
-    <router-view/>
+    
+    <!-- <webview></webview> -->
     <tab-bar @tabTo = 'onTabTo'></tab-bar>
+    <router-view/>
   </div>
 </template>
 
 <script>
 import tabBar from './components/tabBar.vue';
-const modal = weex.requireModule('modal');
+import webview from './page/webview.vue'
+const modal = weex.requireModule('modal'); 
 export default {
   name: 'App',
   data () {
@@ -16,7 +19,8 @@ export default {
     }
   },
   components: {
-    'tab-bar': tabBar
+    'tab-bar': tabBar,
+    'webview': webview
   },
   methods: {
     onTabTo(result) {
