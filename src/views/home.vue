@@ -25,6 +25,11 @@
                     </div>
                 </cell>
                 <!-- TODO 品牌制造商直供 cell -->
+                <cell>
+                  <div class="cell-button">
+                    <block-1 :title="makers.title" :items="makers.items"></block-1>
+                  </div>
+                </cell>
                 <!-- TODO 周一周四·新品发布 cell -->
                 <!-- TODO 人气推荐·好物精选 cell -->
                 <!-- TODO 猜你喜欢 cell -->
@@ -54,12 +59,10 @@
   right: 0;
 }
 
-.cell-button {
-  padding-bottom: 18px;
-}
 
 .slogan {
   width: 750px;
+  height: 60px;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-around;
@@ -73,6 +76,9 @@
   text-align: center;
   color: #b4282d;
 }
+.cell-button {
+  margin-top: 8px;
+}
 </style>
 
 <script>
@@ -81,23 +87,35 @@ import Header from "../components/Header.vue";
 import { WxcTabPage } from "weex-ui";
 import { tabConfig } from "./Config.js";
 import YXSlider from "../components/YXSlider.vue";
+import Block1 from "../components/Block1.vue"
 import api from "../http/api.js";
 export default {
   components: {
     "home-header": Header,
     "wxc-tab-page": WxcTabPage,
-    "yx-slider": YXSlider
+    "yx-slider": YXSlider,
+    "block-1": Block1
   },
   data() {
     return {
       tabTitles: tabConfig.tabTitles,
       tabStyles: tabConfig.tabStyles,
       //   TODO 这里需要使用屏幕的高来计算
-      tabPageHeight: 1110,
-      YXBanners: []
+      tabPageHeight: 1334,
+      YXBanners: [],
+      makers: {
+        title: '品牌制造商直供',
+        items:[]
+      }
     };
   },
+  computed: {
+    
+  },
   created() {
+    modal.toast({
+      message: WXEnvironment.deviceModel
+    })
     api.GET("api/home/index", res => {
       let result = res.data.result;
       this.YXBanners = result["banners"];
